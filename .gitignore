@@ -1,0 +1,6 @@
+fastf1-env/
+__pycache__/
+*.pyc
+cache/
+.ipynb_checkpoints/
+.env
