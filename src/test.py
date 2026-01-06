@@ -1,7 +1,6 @@
 import fastf1
 import matplotlib.pyplot as plt
-
-fastf1.Cache.enable_cache(r"C:\Users\hardi\f1-rating\cache")
+fastf1.Cache.enable_cache('../cache')
 
 session = fastf1.get_session(2025, 'Hungary', 'R')
 session.load()
@@ -14,7 +13,7 @@ laps_clean = laps[
     laps['PitOutTime'].isna() &
     (laps['TrackStatus'] == '1')
 ]
-
+laps_clean = laps_clean[laps_clean['LapNumber'] != 1]
 lap_numbers = laps_clean['LapNumber']
 lap_times = laps_clean['LapTime'].dt.total_seconds()
 
