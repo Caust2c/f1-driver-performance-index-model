@@ -4,8 +4,6 @@ from fastf1.plotting import get_driver_color
 from consistency_rating import compute_driver_consistency
 
 driver_scores, session = compute_driver_consistency()
-
-# Get official FastF1 driver colors
 colors = [
     get_driver_color(driver, session)
     for driver in driver_scores['Driver']
