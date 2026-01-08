@@ -1,24 +1,45 @@
 import fastf1
 import pandas as pd
+
 fastf1.Cache.enable_cache('../cache')
+
 
 def first_lap_delta(year=2025, race='Hungary', session_type='R'):
     session = fastf1.get_session(year, race, session_type)
     session.load()
 
-    grid = dict(zip(session.results['Abbreviation'], session.results['GridPosition']))
+    results = session.results
+    num_to_abbr = dict(zip(results['DriverNumber'], results['Abbreviation']))
 
-    lap1 = session.laps[session.laps['LapNumber'] == 1]
-    lap1_end = lap1.sort_values('Time').groupby('Driver').tail(1)
+    grid = dict(zip(results['DriverNumber'], results['GridPosition']))
 
-    deltas = {
-        d: grid[d] - p
-        for d, p in zip(lap1_end['Driver'], lap1_end['Position'])
-        if d in grid
-    }
-    return pd.DataFrame(
-        [{'Driver': d, 'Delta': v} for d, v in deltas.items()]
+    laps = session.laps.pick_drivers(results['DriverNumber'])
+
+    lap1_end = (
+        laps[laps['LapNumber'] == 1]
+        .sort_values('Time')
+        .groupby('DriverNumber', as_index=False)
+        .last()
     )
 
-if __name__ == "__main__":
-    print(first_lap_delta())
+    records = []
+
+    for _, row in lap1_end.iterrows():
+        num = row['DriverNumber']
+        if num not in grid:
+            continue
+
+        start = grid[num]
+        end = row['Position']
+
+        if pd.isna(end):
+            continue
+
+        delta = start - end
+
+        records.append({
+            'Driver': num_to_abbr[num],
+            'Delta': int(delta)
+        })
+
+    return pd.DataFrame(records)

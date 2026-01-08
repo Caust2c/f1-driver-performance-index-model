@@ -1,5 +1,8 @@
 import fastf1
+import pandas as pd
+
 fastf1.Cache.enable_cache('../cache')
+
 
 def compute_driver_consistency(year=2025, race='Hungary', session_type='R'):
     session = fastf1.get_session(year, race, session_type)
@@ -13,6 +16,13 @@ def compute_driver_consistency(year=2025, race='Hungary', session_type='R'):
     laps = session.laps
     laps = laps[laps['Driver'].isin(finished_drivers)]
     laps = laps[laps['LapTime'].notna()]
+    if race == 'Singapore' and year == 2025:
+        laps = laps[
+            ~(
+                (laps['Driver'] == 'HAM') &
+                (laps['LapNumber'] > 57)
+            )
+        ]
     laps_clean = laps[
         laps['PitInTime'].isna() &
         laps['PitOutTime'].isna() &
@@ -21,6 +31,7 @@ def compute_driver_consistency(year=2025, race='Hungary', session_type='R'):
     ].copy()
 
     laps_clean['LapTimeSeconds'] = laps_clean['LapTime'].dt.total_seconds()
+
     stint_stats = (
         laps_clean
         .groupby(['Driver', 'Stint'])
@@ -30,9 +41,11 @@ def compute_driver_consistency(year=2025, race='Hungary', session_type='R'):
         )
         .reset_index()
     )
+
     stint_stats['WeightedStd'] = (
         stint_stats['LapsInStint'] * stint_stats['StdDevLapTime']
     )
+
     driver_scores = (
         stint_stats
         .groupby('Driver')
@@ -46,8 +59,9 @@ def compute_driver_consistency(year=2025, race='Hungary', session_type='R'):
     )
 
     return driver_scores
+
+
 if __name__ == "__main__":
     driver_scores = compute_driver_consistency()
-
     print("\nDriver Consistency Ranking (lower = better):\n")
     print(driver_scores)
