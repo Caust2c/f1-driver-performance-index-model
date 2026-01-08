@@ -1,7 +1,8 @@
 import fastf1
+import pandas as pd
 fastf1.Cache.enable_cache('../cache')
 
-def pole_loss_penalty(year=2025, race='Miami', session_type='R'):
+def clean_air_penalty(year=2025, race='Miami', session_type='R'):
     if year != 2025:
         return None
 
@@ -32,11 +33,11 @@ def pole_loss_penalty(year=2025, race='Miami', session_type='R'):
 
     delta = 1 - int(first_loss['Position'].iloc[0])
 
-    return {
-        'driver': pole_driver,
-        'delta': delta
-    }
+    return pd.DataFrame([{
+    'Driver': pole_driver,
+    'Delta': delta
+}])
 
 
 if __name__ == "__main__":
-    print(pole_loss_penalty())
+    print(clean_air_penalty())

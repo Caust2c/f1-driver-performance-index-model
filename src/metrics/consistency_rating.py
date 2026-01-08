@@ -45,7 +45,7 @@ def compute_driver_consistency(year=2025, race='Hungary', session_type='R'):
         .sort_values('ConsistencyScore')
     )
 
-    return driver_scores, session
+    return driver_scores
 if __name__ == "__main__":
     driver_scores = compute_driver_consistency()
 

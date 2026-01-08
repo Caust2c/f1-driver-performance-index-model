@@ -68,7 +68,7 @@ def tyre_whisperer(year=2025, race='Las Vegas', session_type='R', std_tol=0.15, 
         .reset_index()
     )
 
-    return driver_whisperer, session
+    return driver_whisperer
 if __name__ == "__main__":
     df, session = tyre_whisperer()
     print(df)
