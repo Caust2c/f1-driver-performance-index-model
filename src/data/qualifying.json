@@ -1,0 +1,91 @@
+{
+  "metric": "Qualifying",
+  "season": 2025,
+  "unit": "points",
+  "data": [
+    {
+      "driver": "VER",
+      "value": 472.0
+    },
+    {
+      "driver": "ALO",
+      "value": 279.0
+    },
+    {
+      "driver": "GAS",
+      "value": 190.0
+    },
+    {
+      "driver": "RUS",
+      "value": 190.0
+    },
+    {
+      "driver": "LEC",
+      "value": 187.0
+    },
+    {
+      "driver": "SAI",
+      "value": 179.0
+    },
+    {
+      "driver": "HAD",
+      "value": 176.0
+    },
+    {
+      "driver": "BOR",
+      "value": 156.0
+    },
+    {
+      "driver": "BEA",
+      "value": 152.0
+    },
+    {
+      "driver": "ALB",
+      "value": 93.0
+    },
+    {
+      "driver": "OCO",
+      "value": 86.0
+    },
+    {
+      "driver": "HUL",
+      "value": 82.0
+    },
+    {
+      "driver": "PIA",
+      "value": 75.0
+    },
+    {
+      "driver": "NOR",
+      "value": 75.0
+    },
+    {
+      "driver": "LAW",
+      "value": 43.0
+    },
+    {
+      "driver": "COL",
+      "value": 33.0
+    },
+    {
+      "driver": "ANT",
+      "value": 17.0
+    },
+    {
+      "driver": "TSU",
+      "value": 15.0
+    },
+    {
+      "driver": "HAM",
+      "value": 15.0
+    },
+    {
+      "driver": "DOO",
+      "value": 10.0
+    },
+    {
+      "driver": "STR",
+      "value": 0.0
+    }
+  ]
+}

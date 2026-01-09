@@ -1,0 +1,91 @@
+{
+  "metric": "Clean Air Penalty",
+  "season": 2025,
+  "unit": "points",
+  "data": [
+    {
+      "driver": "VER",
+      "value": 3.0
+    },
+    {
+      "driver": "NOR",
+      "value": 3.0
+    },
+    {
+      "driver": "PIA",
+      "value": 1.0
+    },
+    {
+      "driver": "ALO",
+      "value": 0.0
+    },
+    {
+      "driver": "ALB",
+      "value": 0.0
+    },
+    {
+      "driver": "BOR",
+      "value": 0.0
+    },
+    {
+      "driver": "BEA",
+      "value": 0.0
+    },
+    {
+      "driver": "ANT",
+      "value": 0.0
+    },
+    {
+      "driver": "COL",
+      "value": 0.0
+    },
+    {
+      "driver": "HAM",
+      "value": 0.0
+    },
+    {
+      "driver": "DOO",
+      "value": 0.0
+    },
+    {
+      "driver": "GAS",
+      "value": 0.0
+    },
+    {
+      "driver": "HAD",
+      "value": 0.0
+    },
+    {
+      "driver": "LEC",
+      "value": 0.0
+    },
+    {
+      "driver": "LAW",
+      "value": 0.0
+    },
+    {
+      "driver": "HUL",
+      "value": 0.0
+    },
+    {
+      "driver": "OCO",
+      "value": 0.0
+    },
+    {
+      "driver": "RUS",
+      "value": 0.0
+    },
+    {
+      "driver": "SAI",
+      "value": 0.0
+    },
+    {
+      "driver": "STR",
+      "value": 0.0
+    },
+    {
+      "driver": "TSU",
+      "value": 0.0
+    }
+  ]
+}

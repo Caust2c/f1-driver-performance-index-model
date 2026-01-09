@@ -1,0 +1,91 @@
+{
+  "metric": "Race Position Gain",
+  "season": 2025,
+  "unit": "points",
+  "data": [
+    {
+      "driver": "OCO",
+      "value": 59.0
+    },
+    {
+      "driver": "BEA",
+      "value": 58.0
+    },
+    {
+      "driver": "ALB",
+      "value": 47.0
+    },
+    {
+      "driver": "STR",
+      "value": 47.0
+    },
+    {
+      "driver": "HUL",
+      "value": 37.0
+    },
+    {
+      "driver": "HAM",
+      "value": 19.0
+    },
+    {
+      "driver": "COL",
+      "value": 7.0
+    },
+    {
+      "driver": "TSU",
+      "value": 5.0
+    },
+    {
+      "driver": "VER",
+      "value": -2.0
+    },
+    {
+      "driver": "BOR",
+      "value": -4.0
+    },
+    {
+      "driver": "RUS",
+      "value": -4.0
+    },
+    {
+      "driver": "DOO",
+      "value": -5.0
+    },
+    {
+      "driver": "LAW",
+      "value": -14.0
+    },
+    {
+      "driver": "SAI",
+      "value": -16.0
+    },
+    {
+      "driver": "ANT",
+      "value": -27.0
+    },
+    {
+      "driver": "NOR",
+      "value": -29.0
+    },
+    {
+      "driver": "GAS",
+      "value": -29.0
+    },
+    {
+      "driver": "PIA",
+      "value": -30.0
+    },
+    {
+      "driver": "LEC",
+      "value": -31.0
+    },
+    {
+      "driver": "ALO",
+      "value": -37.0
+    },
+    {
+      "driver": "HAD",
+      "value": -51.0
+    }
+  ]
+}

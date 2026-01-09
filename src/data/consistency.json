@@ -1,0 +1,91 @@
+{
+  "metric": "Consistency",
+  "season": 2025,
+  "unit": "points",
+  "data": [
+    {
+      "driver": "VER",
+      "value": 8.00393068412533
+    },
+    {
+      "driver": "PIA",
+      "value": 5.610739598753746
+    },
+    {
+      "driver": "NOR",
+      "value": 5.168163038455219
+    },
+    {
+      "driver": "RUS",
+      "value": 5.014311355951136
+    },
+    {
+      "driver": "DOO",
+      "value": 4.0345176899243
+    },
+    {
+      "driver": "SAI",
+      "value": 3.9870040584500366
+    },
+    {
+      "driver": "LAW",
+      "value": 2.7424455181589593
+    },
+    {
+      "driver": "HAD",
+      "value": 2.0636935525445566
+    },
+    {
+      "driver": "LEC",
+      "value": 1.765153497858563
+    },
+    {
+      "driver": "STR",
+      "value": 0.740923867588819
+    },
+    {
+      "driver": "ANT",
+      "value": -0.3019156479383085
+    },
+    {
+      "driver": "ALO",
+      "value": -0.9534898521284845
+    },
+    {
+      "driver": "TSU",
+      "value": -1.0453143079656257
+    },
+    {
+      "driver": "BOR",
+      "value": -1.402031749115821
+    },
+    {
+      "driver": "GAS",
+      "value": -3.0039006196592837
+    },
+    {
+      "driver": "COL",
+      "value": -3.8597614299193665
+    },
+    {
+      "driver": "ALB",
+      "value": -4.5444168177422455
+    },
+    {
+      "driver": "OCO",
+      "value": -4.562253611041044
+    },
+    {
+      "driver": "BEA",
+      "value": -5.013468006002
+    },
+    {
+      "driver": "HUL",
+      "value": -5.080741327730955
+    },
+    {
+      "driver": "HAM",
+      "value": -9.363589492567577
+    }
+  ]
+}

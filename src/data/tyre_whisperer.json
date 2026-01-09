@@ -1,0 +1,91 @@
+{
+  "metric": "Tyre Whisperer",
+  "season": 2025,
+  "unit": "points",
+  "data": [
+    {
+      "driver": "OCO",
+      "value": 368.08213596363856
+    },
+    {
+      "driver": "LAW",
+      "value": 356.1032743376111
+    },
+    {
+      "driver": "TSU",
+      "value": 335.7533440348931
+    },
+    {
+      "driver": "BEA",
+      "value": 310.02088597934573
+    },
+    {
+      "driver": "HAD",
+      "value": 299.43986433919497
+    },
+    {
+      "driver": "VER",
+      "value": 295.7155534216162
+    },
+    {
+      "driver": "HUL",
+      "value": 285.74082665184835
+    },
+    {
+      "driver": "STR",
+      "value": 283.5012794022358
+    },
+    {
+      "driver": "SAI",
+      "value": 282.0698182354879
+    },
+    {
+      "driver": "BOR",
+      "value": 270.05272408040946
+    },
+    {
+      "driver": "NOR",
+      "value": 258.87107425501017
+    },
+    {
+      "driver": "ALB",
+      "value": 255.15339558330572
+    },
+    {
+      "driver": "GAS",
+      "value": 254.33209699765393
+    },
+    {
+      "driver": "COL",
+      "value": 226.11929307691454
+    },
+    {
+      "driver": "RUS",
+      "value": 225.5890852409731
+    },
+    {
+      "driver": "HAM",
+      "value": 214.33532041162948
+    },
+    {
+      "driver": "ANT",
+      "value": 204.20838220871875
+    },
+    {
+      "driver": "LEC",
+      "value": 198.43083635154576
+    },
+    {
+      "driver": "ALO",
+      "value": 187.46125672853196
+    },
+    {
+      "driver": "PIA",
+      "value": 184.23242871014506
+    },
+    {
+      "driver": "DOO",
+      "value": 37.011752136752136
+    }
+  ]
+}

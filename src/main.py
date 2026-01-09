@@ -1,5 +1,7 @@
 import fastf1
 import pandas as pd
+import json
+from pathlib import Path
 
 from metrics.quali_rel import qualifying_relative_to_car
 from metrics.tyre_whisperer import tyre_whisperer
@@ -10,6 +12,34 @@ from metrics.race_position_gain import race_position_gain
 
 
 QUALI_POINTS = [25, 18, 15, 12, 10, 8, 6, 4, 2, 1]
+
+def save_metric_json(df, *,
+                     metric_name,
+                     value_col,
+                     year,
+                     out_dir="data"):
+    records = [
+        {
+            "driver": row["Driver"],
+            "value": float(row[value_col])
+        }
+        for _, row in df.iterrows()
+    ]
+
+    payload = {
+        "metric": metric_name,
+        "season": year,
+        "unit": "points",
+        "data": records
+    }
+
+    Path(out_dir).mkdir(exist_ok=True)
+
+    filename = metric_name.lower().replace(" ", "_")
+
+    with open(f"{out_dir}/{filename}.json", "w") as f:
+        json.dump(payload, f, indent=2)
+
 
 
 def run_season_tables(year=2025):
@@ -99,20 +129,24 @@ def run_season_tables(year=2025):
         'TyreScore': tyre_points.values()
     }).sort_values('TyreScore', ascending=False).reset_index(drop=True)
 
+
     df_clean_air = pd.DataFrame({
         'Driver': clean_air_points.keys(),
         'CleanAirPenalty': clean_air_points.values()
     }).sort_values('CleanAirPenalty', ascending=False).reset_index(drop=True)
+
 
     df_firstlap = pd.DataFrame({
         'Driver': firstlap_points.keys(),
         'FirstLapScore': firstlap_points.values()
     }).sort_values('FirstLapScore', ascending=False).reset_index(drop=True)
 
+
     df_race_gain = pd.DataFrame({
         'Driver': race_gain_points.keys(),
         'RacePositionGain': race_gain_points.values()
     }).sort_values('RacePositionGain', ascending=False).reset_index(drop=True)
+
 
     cons_avg = {
         d: (sum(v) / len(v)) if v else 0
@@ -130,6 +164,49 @@ def run_season_tables(year=2025):
         'Driver': cons_score.keys(),
         'ConsistencyScore': cons_score.values()
     }).sort_values('ConsistencyScore', ascending=False).reset_index(drop=True)
+
+    save_metric_json(
+    df_quali,
+    metric_name="Qualifying",
+    value_col="QualiPoints",
+    year=2025
+    )
+
+    save_metric_json(
+        df_tyre,
+        metric_name="Tyre Whisperer",
+        value_col="TyreScore",
+        year=2025
+    )
+
+    save_metric_json(
+        df_clean_air,
+        metric_name="Clean Air Penalty",
+        value_col="CleanAirPenalty",
+        year=2025
+    )
+
+    save_metric_json(
+        df_firstlap,
+        metric_name="First Lap",
+        value_col="FirstLapScore",
+        year=2025
+    )
+
+    save_metric_json(
+        df_race_gain,
+        metric_name="Race Position Gain",
+        value_col="RacePositionGain",
+        year=2025
+    )
+
+    save_metric_json(
+        df_consistency,
+        metric_name="Consistency",
+        value_col="ConsistencyScore",
+        year=2025
+    )
+
 
     final_df = (
         df_quali

@@ -1,0 +1,91 @@
+{
+  "metric": "First Lap",
+  "season": 2025,
+  "unit": "points",
+  "data": [
+    {
+      "driver": "BEA",
+      "value": 45.0
+    },
+    {
+      "driver": "OCO",
+      "value": 44.0
+    },
+    {
+      "driver": "STR",
+      "value": 37.0
+    },
+    {
+      "driver": "HUL",
+      "value": 34.0
+    },
+    {
+      "driver": "ALB",
+      "value": 31.0
+    },
+    {
+      "driver": "HAM",
+      "value": 31.0
+    },
+    {
+      "driver": "ALO",
+      "value": 30.0
+    },
+    {
+      "driver": "GAS",
+      "value": 26.0
+    },
+    {
+      "driver": "VER",
+      "value": 25.0
+    },
+    {
+      "driver": "LEC",
+      "value": 24.0
+    },
+    {
+      "driver": "SAI",
+      "value": 23.0
+    },
+    {
+      "driver": "LAW",
+      "value": 21.0
+    },
+    {
+      "driver": "COL",
+      "value": 21.0
+    },
+    {
+      "driver": "ANT",
+      "value": 16.0
+    },
+    {
+      "driver": "TSU",
+      "value": 15.0
+    },
+    {
+      "driver": "PIA",
+      "value": 12.0
+    },
+    {
+      "driver": "NOR",
+      "value": 12.0
+    },
+    {
+      "driver": "DOO",
+      "value": 7.0
+    },
+    {
+      "driver": "BOR",
+      "value": 6.0
+    },
+    {
+      "driver": "HAD",
+      "value": 6.0
+    },
+    {
+      "driver": "RUS",
+      "value": -1.0
+    }
+  ]
+}
