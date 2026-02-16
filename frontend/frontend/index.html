@@ -2,12 +2,326 @@
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
-    <!-- Add own logo later-->
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>frontend</title>
+    <title>VelocityStats | F1 Driver Analytics</title>
+
+    <link
+      href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;600;800&display=swap"
+      rel="stylesheet"
+    />
+
+    <style>
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+        font-family: "Orbitron", sans-serif;
+      }
+
+      /* ✅ FIXED BODY LAYOUT */
+      body {
+        min-height: 100vh;
+        display: flex;
+        flex-direction: column;
+        background: linear-gradient(120deg, #0a0a0a 40%, #120000 100%);
+        color: white;
+        overflow-x: hidden;
+        position: relative;
+      }
+
+      /* ===== SPEED LINES ===== */
+      body::before {
+        content: "";
+        position: absolute;
+        inset: 0;
+        background: repeating-linear-gradient(
+          -60deg,
+          transparent,
+          transparent 28px,
+          rgba(255, 30, 30, 0.04) 30px,
+          rgba(255, 30, 30, 0.04) 32px
+        );
+        pointer-events: none;
+        z-index: 0;
+      }
+
+      /* ===== HEADER ===== */
+      header {
+        padding: 20px 60px;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        position: relative;
+        z-index: 10;
+        flex-shrink: 0;
+      }
+
+      /* ===== LOGO ===== */
+      .logo {
+        display: flex;
+        align-items: center;
+        gap: 14px;
+      }
+
+      .logo img {
+        height: 90px; /* ⬅️ SAFE TO INCREASE NOW */
+        width: auto;
+        filter: drop-shadow(0 0 12px rgba(255, 30, 30, 0.6));
+      }
+
+      .logo span {
+        font-size: 30px;
+        font-weight: 800;
+        letter-spacing: 2px;
+        color: #ff1e1e;
+      }
+
+      nav button {
+        margin-left: 20px;
+        padding: 12px 26px;
+        border: 2px solid #ff1e1e;
+        background: transparent;
+        color: white;
+        cursor: pointer;
+        transition: 0.3s;
+      }
+
+      nav button:hover {
+        background: #ff1e1e;
+        color: black;
+        box-shadow: 0 0 20px #ff1e1e;
+      }
+
+      /* ===== MAIN HERO ===== */
+      main {
+        flex: 1;
+        display: flex;
+        align-items: center;
+        padding: 0 80px;
+        position: relative;
+        z-index: 1;
+      }
+
+      /* ===== TEXT CONTENT ===== */
+      .text-section {
+        max-width: 560px;
+        position: relative;
+        z-index: 5;
+      }
+
+      .text-section h1 {
+        font-size: 56px;
+        line-height: 1.1;
+        text-shadow: 0 0 25px rgba(255, 30, 30, 0.25);
+      }
+
+      .text-section span {
+        color: #ff1e1e;
+      }
+
+      .accent-bar {
+        width: 120px;
+        height: 4px;
+        background: linear-gradient(90deg, #ff1e1e, #ffb000);
+        margin: 18px 0 12px;
+      }
+
+      .text-section p {
+        margin-bottom: 30px;
+        color: #bfbfbf;
+        line-height: 1.6;
+      }
+
+      /* ===== CTA ===== */
+      .cta {
+        display: flex;
+        gap: 20px;
+        margin-bottom: 40px;
+      }
+
+      .cta button {
+        padding: 14px 34px;
+        font-size: 14px;
+        border: none;
+        cursor: pointer;
+        transition: 0.3s;
+      }
+
+      .cta .primary {
+        background: linear-gradient(90deg, #ff1e1e, #ffb000);
+        color: black;
+      }
+
+      .cta .primary:hover {
+        box-shadow: 0 0 40px rgba(255, 176, 0, 0.8);
+      }
+
+      .cta .secondary {
+        background: transparent;
+        color: white;
+        border: 2px solid white;
+      }
+
+      .cta .secondary:hover {
+        background: white;
+        color: black;
+      }
+
+      /* ===== STATS ===== */
+      .stats {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: 20px;
+      }
+
+      .stat-card {
+        padding: 18px;
+        border: 1px solid rgba(255, 255, 255, 0.12);
+        background:
+          linear-gradient(
+            135deg,
+            rgba(255, 255, 255, 0.04),
+            rgba(0, 0, 0, 0.7)
+          ),
+          repeating-linear-gradient(
+            45deg,
+            rgba(255, 255, 255, 0.02),
+            rgba(255, 255, 255, 0.02) 6px,
+            transparent 6px,
+            transparent 12px
+          );
+        transition: 0.3s;
+      }
+
+      .stat-card:hover {
+        transform: translateY(-6px);
+        border-color: #ff1e1e;
+      }
+
+      .stat-card h3 {
+        color: #ff1e1e;
+        font-size: 20px;
+      }
+
+      .stat-card p {
+        font-size: 12px;
+        color: #aaa;
+      }
+
+      /* ===== HERO MODEL ===== */
+      .model_container {
+        position: absolute;
+        right: -6%;
+        bottom: 8%;
+        width: 70vw;
+        max-width: 900px;
+        height: 520px;
+        z-index: 1;
+        pointer-events: none;
+        filter: drop-shadow(0 0 40px rgba(255, 30, 30, 0.35));
+      }
+      model-viewer {
+        width: 100%;
+        height: 100%;
+        pointer-events: none;
+      }
+
+      /* ===== FOOTER LINE (NOW SAFE) ===== */
+      .footer-line {
+        height: 3px;
+        background: linear-gradient(90deg, transparent, #ff1e1e, transparent);
+        flex-shrink: 0;
+      }
+
+      /* ===== RESPONSIVE ===== */
+      @media (max-width: 1000px) {
+        main {
+          flex-direction: column;
+          text-align: center;
+        }
+
+        .model_container {
+          position: relative;
+          right: 0;
+          bottom: 0;
+          width: 95vw;
+          height: 360px;
+          margin-top: 30px;
+        }
+
+        .stats {
+          grid-template-columns: 1fr;
+        }
+
+        .accent-bar {
+          margin-left: auto;
+          margin-right: auto;
+        }
+      }
+    </style>
   </head>
+
   <body>
-    <div id="root"></div>
-    <script type="module" src="/src/main.jsx"></script>
+    <header>
+      <div class="logo">
+        <img src="/assets/logo.png" alt="VelocityStats Logo" />
+        <span>VelocityStats</span>
+      </div>
+
+      <nav>
+        <button onclick="location.href = 'comparison.html'">Comparison</button>
+        <button onclick="location.href = 'parameters.html'">Parameters</button>
+      </nav>
+    </header>
+
+    <main>
+      <div class="text-section">
+        <h1>Beyond Speed.<br /><span>Pure Driver Skill.</span></h1>
+        <div class="accent-bar"></div>
+        <p>
+          Advanced Formula 1 analytics designed to separate driver brilliance
+          from machinery dominance using non-standard performance metrics.
+        </p>
+
+        <div class="cta">
+          <button class="primary">Start Analysis</button>
+          <button class="secondary">View Rankings</button>
+        </div>
+
+        <div class="stats">
+          <div class="stat-card">
+            <h3>Consistency Index</h3>
+            <p>Lap-to-lap stability under race pressure</p>
+          </div>
+          <div class="stat-card">
+            <h3>Tyre Intelligence</h3>
+            <p>Degradation control & stint optimization</p>
+          </div>
+          <div class="stat-card">
+            <h3>Race IQ</h3>
+            <p>Overtakes, defense & situational awareness</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="model_container">
+        <model-viewer
+          src="/assets/mclaren_mp45__formula_1.glb"
+          auto-rotate
+          rotation-per-second="-12deg"
+          disable-zoom
+          interaction-prompt="none"
+          environment-image="neutral"
+          shadow-intensity="1"
+        ></model-viewer>
+      </div>
+    </main>
+
+    <div class="footer-line"></div>
+
+    <script
+      type="module"
+      src="https://ajax.googleapis.com/ajax/libs/model-viewer/4.0.0/model-viewer.min.js"
+    ></script>
   </body>
 </html>
