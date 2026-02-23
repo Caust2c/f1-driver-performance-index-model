@@ -1,9 +1,9 @@
 import { useEffect, useState } from "react";
-import MetricChart3 from "../components/MetricChart3";
+import MetricChart from "../components/MetricChart";
+import FinalChart from "../components/FinalChart";
 
 export default function Home() {
   const [quali, setQuali] = useState([]);
-  const [final, setFinal] = useState([]);
   const [clean, setClean] = useState([]);
   const [consistency, setConsistency] = useState([]);
   const [firstLap, setFirstLap] = useState([]);
@@ -34,11 +34,16 @@ export default function Home() {
     fetch("/data/2025/tyre_whisperer.json")
       .then(res => res.json())
       .then(json => setTyreWhisperer(json.data));
-    
-    fetch("/data/2025/final.json")
-      .then(res => res.json())
-      .then(json => setFinal(json.data));
   }, []);
+
+  const metricDataByKey = {
+    qualifying: quali,
+    cleanAirPenalty: clean,
+    consistency,
+    firstLap,
+    racePositionGain,
+    tyreWhisperer,
+  };
 
   return (
     <>
@@ -78,12 +83,8 @@ export default function Home() {
         dataKey="value"
       />
       <p>Desc about Tyre Whisperer</p>
-      <MetricChart3
-        title="Final Driver Ranking"
-        data={final}
-        dataKey="value"
-      />
-      <p>Desc about Final Ranking</p>
+      <FinalChart metricDataByKey={metricDataByKey} season={2025} />
+      <p>Use the sliders above to set your own metric weights and generate a custom final ranking.</p>
     </>
   );
 }
