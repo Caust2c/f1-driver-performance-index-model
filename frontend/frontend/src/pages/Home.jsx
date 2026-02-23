@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import MetricChart from "../components/MetricChart";
+import MetricChart3 from "../components/MetricChart3";
 
 export default function Home() {
   const [quali, setQuali] = useState([]);
@@ -42,43 +42,43 @@ export default function Home() {
 
   return (
     <>
-      <MetricChart
+      <MetricChart3
         title="Qualifying Performance"
         data={quali}
         dataKey="value"
       />
       <p>Desc about Quali</p>
-      <MetricChart
+      <MetricChart3
         title="Clean Air Performance"
         data={clean}
         dataKey="value"
       />
       <p>Desc about Clean Air</p>
-      <MetricChart
+      <MetricChart3
         title="Constency of the drivers"
         data={consistency}
         dataKey="value"
       />
       <p>Desc about Consistency</p>
-      <MetricChart
+      <MetricChart3
         title="First Lap Gain/Loss"
         data={firstLap}
         dataKey="value"
       />
       <p>Desc about First Lap</p>
-      <MetricChart
+      <MetricChart3
         title="Race Postition Gain/Loss"
         data={racePositionGain}
         dataKey="value"
       />
       <p>Desc about Race Position Gain</p>
-      <MetricChart
+      <MetricChart3
         title="Tyre Whisperer Metric"
         data={tyreWhisperer}
         dataKey="value"
       />
       <p>Desc about Tyre Whisperer</p>
-      <MetricChart
+      <MetricChart3
         title="Final Driver Ranking"
         data={final}
         dataKey="value"
