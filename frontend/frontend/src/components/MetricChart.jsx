@@ -1,23 +1,144 @@
+import React from 'react';
 import {
   BarChart,
   Bar,
   XAxis,
   YAxis,
   Tooltip,
-  ResponsiveContainer
+  ResponsiveContainer,
+  CartesianGrid,
+  Cell
 } from "recharts";
 
+const TEAM_COLORS = {
+  "Red Bull Racing": "#3671C6",
+  "Ferrari": "#E8002D",
+  "Mercedes": "#27F4D2",
+  "McLaren": "#FF8000",
+  "Aston Martin": "#225941",
+  "Alpine": "#0093CC",
+  "Williams": "#64C4FF",
+  "RB": "#6692FF",
+  "Haas": "#B6BABD",
+  "Kick Sauber": "#52E252",
+  "Default": "#ff1801"
+};
+
+const DRIVER_TEAMS = {
+  "VER": "Red Bull Racing",
+  "LAW": "Red Bull Racing",
+  "NOR": "McLaren",
+  "PIA": "McLaren",
+  "LEC": "Ferrari",
+  "HA":  "Ferrari",
+  "RUS": "Mercedes",
+  "ANT": "Mercedes",
+  "ALO": "Aston Martin",
+  "STR": "Aston Martin",
+  "GAS": "Alpine",
+  "DOO": "Alpine",
+  "ALB": "Williams",
+  "SAI": "Williams",
+  "COL": "Williams",
+  "TSU": "RB",
+  "HAD": "RB",
+  "HUL": "Kick Sauber",
+  "BOR": "Kick Sauber",
+  "OCO": "Haas",
+  "BEA": "Haas"
+};
+
+const getDriverColor = (driverCode) => {
+  const team = DRIVER_TEAMS[driverCode] || "Default";
+  return TEAM_COLORS[team] || TEAM_COLORS["Default"];
+};
+
+const CustomTooltip = ({ active, payload, label }) => {
+  if (active && payload && payload.length) {
+    const driverCode = label;
+    const teamName = DRIVER_TEAMS[driverCode] || "Unknown Team";
+    const teamColor = getDriverColor(driverCode);
+
+    return (
+      <div style={{
+        backgroundColor: '#15151e',
+        border: `1px solid ${teamColor}`,
+        padding: '10px',
+        color: '#fff',
+        fontFamily: '"Orbitron", sans-serif',
+        boxShadow: `0 0 15px ${teamColor}40`
+      }}>
+        <p style={{ margin: 0, fontWeight: 'bold', fontSize: '14px' }}>{driverCode}</p>
+        <p style={{ margin: '4px 0 0', fontSize: '12px', color: '#bfbfbf' }}>
+          {teamName}
+        </p>
+        <p style={{ margin: '4px 0 0', color: teamColor, fontWeight: 'bold' }}>
+          Score: {typeof payload[0].value === 'number' ? payload[0].value.toFixed(3) : payload[0].value}
+        </p>
+      </div>
+    );
+  }
+  return null;
+};
+
 export default function MetricChart({ title, dataKey, data }) {
+  const axisColor = "#bfbfbf";
+  const gridColor = "#333333";
+
   return (
-    <div className="mb-5">
-      <h4 className="mb-3">{title}</h4>
+    <div className="mb-5" style={{ 
+      background: 'rgba(255,255,255,0.02)', 
+      padding: '20px', 
+      borderRadius: '8px', 
+      border: '1px solid rgba(255,255,255,0.1)' 
+    }}>
+      <h4 className="mb-3" style={{ 
+        color: '#fff', 
+        fontFamily: '"Orbitron", sans-serif', 
+        borderLeft: '4px solid #ff1801', 
+        paddingLeft: '10px' 
+      }}>
+        {title}
+      </h4>
 
       <ResponsiveContainer width="100%" height={400}>
-        <BarChart data={data}>
-          <XAxis dataKey="driver" />
-          <YAxis />
-          <Tooltip />
-          <Bar dataKey={dataKey} />
+        <BarChart 
+          data={data} 
+          margin={{ top: 20, right: 30, left: 20, bottom: 5 }}
+        >
+          <CartesianGrid strokeDasharray="3 3" stroke={gridColor} vertical={false} />
+
+          <XAxis 
+            dataKey="driver" 
+            stroke={axisColor} 
+            tick={{ fill: axisColor, fontSize: 12, fontFamily: 'sans-serif' }}
+            tickLine={false}
+            axisLine={{ stroke: '#555' }}
+          />
+          <YAxis 
+            stroke={axisColor} 
+            tick={{ fill: axisColor, fontSize: 12, fontFamily: 'sans-serif' }}
+            tickLine={false}
+            axisLine={false} 
+          />
+
+          <Tooltip 
+            content={<CustomTooltip />} 
+            cursor={{ fill: 'transparent' }}
+          />
+
+          <Bar 
+            dataKey={dataKey} 
+            radius={[4, 4, 0, 0]}
+            background={{ fill: 'rgba(255, 255, 255, 0.05)', radius: [4, 4, 0, 0] }}
+          >
+            {data.map((entry, index) => (
+              <Cell 
+                key={`cell-${index}`} 
+                fill={getDriverColor(entry.driver)} 
+              />
+            ))}
+          </Bar>
         </BarChart>
       </ResponsiveContainer>
     </div>
