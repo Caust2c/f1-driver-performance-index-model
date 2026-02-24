@@ -1,19 +1,91 @@
+import { useEffect } from "react";
 import { useNavigate } from "react-router-dom";
+import "./landing.css";
+import logoImg from "../assets/img2.png";
+import rb9Model from "../assets/red_bull_rb9_f1__www.vecarz.com.glb";
 
 export default function Landing() {
   const navigate = useNavigate();
 
-  return (
-    <div className="container text-center mt-5">
-      <h1>F1 Rating Project</h1>
-      <p>Explore driver metrics and rankings</p>
+  useEffect(() => {
+    const scriptId = "model-viewer-script";
+    if (document.getElementById(scriptId)) return;
 
-      <button
-        className="btn btn-primary mt-3"
-        onClick={() => navigate("/Home")}
-      >
-        View Graphs
-      </button>
+    const script = document.createElement("script");
+    script.id = scriptId;
+    script.type = "module";
+    script.src =
+      "https://ajax.googleapis.com/ajax/libs/model-viewer/4.0.0/model-viewer.min.js";
+    document.body.appendChild(script);
+  }, []);
+
+  return (
+    <div className="landing-page">
+      <header className="landing-header">
+        <div className="landing-logo">
+          <img src={logoImg} alt="VelocityStats Logo" />
+          <span>VelocityStats</span>
+        </div>
+
+        <nav className="landing-nav">
+          <button type="button" onClick={() => navigate("/Home")}>
+            Show Analytics / Graphs
+          </button>
+        </nav>
+      </header>
+
+      <main className="landing-main">
+        <section className="landing-text-section">
+          <h1>
+            Beyond Speed.<br />
+            <span>Pure Driver Skill.</span>
+          </h1>
+          <div className="landing-accent-bar"></div>
+          <p>
+            Advanced Formula 1 analytics designed to separate driver brilliance
+            from machinery dominance using non-standard performance metrics.
+          </p>
+
+          <div className="landing-cta">
+            <button
+              className="landing-primary"
+              type="button"
+              onClick={() => navigate("/Home")}
+            >
+              Show Analytics / Graphs
+            </button>
+          </div>
+
+          <div className="landing-stats">
+            <article className="landing-stat-card">
+              <h3>Consistency Index</h3>
+              <p>Lap-to-lap stability under race pressure</p>
+            </article>
+            <article className="landing-stat-card">
+              <h3>Tyre Intelligence</h3>
+              <p>Degradation control &amp; stint optimization</p>
+            </article>
+            <article className="landing-stat-card">
+              <h3>Race IQ</h3>
+              <p>Overtakes, defense &amp; situational awareness</p>
+            </article>
+          </div>
+        </section>
+
+        <div className="landing-model-container">
+          <model-viewer
+            src={rb9Model}
+            auto-rotate
+            rotation-per-second="-12deg"
+            disable-zoom
+            interaction-prompt="none"
+            environment-image="neutral"
+            shadow-intensity="1"
+          ></model-viewer>
+        </div>
+      </main>
+
+      <div className="landing-footer-line"></div>
     </div>
   );
 }

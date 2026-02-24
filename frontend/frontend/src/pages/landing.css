@@ -1,0 +1,226 @@
+@import url("https://fonts.googleapis.com/css2?family=Orbitron:wght@400;600;800&display=swap");
+
+.landing-page,
+.landing-page * {
+  box-sizing: border-box;
+  font-family: "Orbitron", sans-serif;
+}
+
+.landing-page {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  background: linear-gradient(120deg, #0a0a0a 40%, #120000 100%);
+  color: white;
+  overflow-x: hidden;
+  position: relative;
+}
+
+.landing-page::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: repeating-linear-gradient(
+    -60deg,
+    transparent,
+    transparent 28px,
+    rgba(255, 30, 30, 0.04) 30px,
+    rgba(255, 30, 30, 0.04) 32px
+  );
+  pointer-events: none;
+  z-index: 0;
+}
+
+.landing-header {
+  padding: 20px 60px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  position: relative;
+  z-index: 10;
+  flex-shrink: 0;
+}
+
+.landing-logo {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+}
+
+.landing-logo img {
+  height: 90px;
+  width: auto;
+  filter: drop-shadow(0 0 12px rgba(255, 30, 30, 0.6));
+}
+
+.landing-logo span {
+  font-size: 30px;
+  font-weight: 800;
+  letter-spacing: 2px;
+  color: #ff1e1e;
+}
+
+.landing-nav button {
+  margin-left: 20px;
+  padding: 12px 26px;
+  border: 2px solid #ff1e1e;
+  background: transparent;
+  color: white;
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+.landing-nav button:hover {
+  background: #ff1e1e;
+  color: black;
+  box-shadow: 0 0 20px #ff1e1e;
+}
+
+.landing-main {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  padding: 0 80px;
+  position: relative;
+  z-index: 1;
+}
+
+.landing-text-section {
+  max-width: 560px;
+  position: relative;
+  z-index: 5;
+}
+
+.landing-text-section h1 {
+  font-size: 56px;
+  line-height: 1.1;
+  text-shadow: 0 0 25px rgba(255, 30, 30, 0.25);
+}
+
+.landing-text-section h1 span {
+  color: #ff1e1e;
+}
+
+.landing-accent-bar {
+  width: 120px;
+  height: 4px;
+  background: linear-gradient(90deg, #ff1e1e, #ffb000);
+  margin: 18px 0 12px;
+}
+
+.landing-text-section p {
+  margin-bottom: 30px;
+  color: #bfbfbf;
+  line-height: 1.6;
+}
+
+.landing-cta {
+  display: flex;
+  gap: 20px;
+  margin-bottom: 40px;
+}
+
+.landing-primary {
+  padding: 14px 34px;
+  font-size: 14px;
+  border: none;
+  cursor: pointer;
+  transition: 0.3s;
+  background: linear-gradient(90deg, #ff1e1e, #ffb000);
+  color: black;
+}
+
+.landing-primary:hover {
+  box-shadow: 0 0 40px rgba(255, 176, 0, 0.8);
+}
+
+.landing-stats {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 20px;
+}
+
+.landing-stat-card {
+  padding: 18px;
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  background:
+    linear-gradient(135deg, rgba(255, 255, 255, 0.04), rgba(0, 0, 0, 0.7)),
+    repeating-linear-gradient(
+      45deg,
+      rgba(255, 255, 255, 0.02),
+      rgba(255, 255, 255, 0.02) 6px,
+      transparent 6px,
+      transparent 12px
+    );
+  transition: 0.3s;
+}
+
+.landing-stat-card:hover {
+  transform: translateY(-6px);
+  border-color: #ff1e1e;
+}
+
+.landing-stat-card h3 {
+  color: #ff1e1e;
+  font-size: 20px;
+}
+
+.landing-stat-card p {
+  font-size: 12px;
+  color: #aaa;
+  margin: 0;
+}
+
+.landing-model-container {
+  position: absolute;
+  right: -6%;
+  bottom: 8%;
+  width: 70vw;
+  max-width: 900px;
+  height: 520px;
+  z-index: 1;
+  pointer-events: none;
+  filter: drop-shadow(0 0 40px rgba(255, 30, 30, 0.35));
+}
+
+.landing-model-container model-viewer {
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+}
+
+.landing-footer-line {
+  height: 3px;
+  background: linear-gradient(90deg, transparent, #ff1e1e, transparent);
+  flex-shrink: 0;
+}
+
+@media (max-width: 1000px) {
+  .landing-main {
+    flex-direction: column;
+    text-align: center;
+    padding: 0 24px 32px;
+  }
+
+  .landing-header {
+    padding: 20px 24px;
+  }
+
+  .landing-model-container {
+    position: relative;
+    right: 0;
+    bottom: 0;
+    width: 95vw;
+    height: 360px;
+    margin-top: 30px;
+  }
+
+  .landing-stats {
+    grid-template-columns: 1fr;
+  }
+
+  .landing-accent-bar {
+    margin-left: auto;
+    margin-right: auto;
+  }
+}
