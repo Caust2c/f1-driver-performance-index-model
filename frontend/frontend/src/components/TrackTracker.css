@@ -1,0 +1,39 @@
+.track-tracker-container {
+  position: fixed;
+  right: 40px;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 100px;
+  z-index: 1000;
+  pointer-events: none;
+  opacity: 0.7;
+  transition: opacity 0.3s;
+}
+
+.track-tracker-container:hover {
+  opacity: 1;
+}
+
+.track-svg {
+  width: 100%;
+  height: auto;
+  filter: drop-shadow(0 0 10px rgba(0, 0, 0, 0.8));
+}
+
+.track-bg {
+  fill: none;
+  stroke: #222;
+  stroke-width: 15;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+
+.track-progress {
+  fill: none;
+  stroke: #ff1e1e;
+  stroke-width: 15;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+  transition: stroke-dashoffset 0.1s ease-out;
+  filter: drop-shadow(0 0 8px #ff1e1e);
+}

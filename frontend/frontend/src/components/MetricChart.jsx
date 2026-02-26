@@ -1,142 +1,68 @@
-import React from 'react';
 import {
   BarChart,
   Bar,
   XAxis,
   YAxis,
+  CartesianGrid,
   Tooltip,
   ResponsiveContainer,
-  CartesianGrid,
   Cell
 } from "recharts";
 
-const TEAM_COLORS = {
-  "Red Bull Racing": "#3671C6",
-  "Ferrari": "#E8002D",
-  "Mercedes": "#27F4D2",
-  "McLaren": "#FF8000",
-  "Aston Martin": "#225941",
-  "Alpine": "#0093CC",
-  "Williams": "#64C4FF",
-  "RB": "#6692FF",
-  "Haas": "#B6BABD",
-  "Kick Sauber": "#52E252",
-  "Default": "#ff1801"
+// Official 2025 F1 Team Colors mapped to Driver Abbreviations
+const driverColors = {
+  LEC: "#E8002D", HAM: "#E8002D", // Ferrari
+  NOR: "#FF8000", PIA: "#FF8000", // McLaren
+  VER: "#3671C6", PER: "#3671C6", // Red Bull
+  RUS: "#27F4D2", ANT: "#27F4D2", // Mercedes
+  ALO: "#229971", STR: "#229971", // Aston Martin
+  GAS: "#FF87BC", DOO: "#FF87BC", // Alpine
+  ALB: "#64C4FF", SAI: "#64C4FF", // Williams
+  OCO: "#FFFFFF", BEA: "#FFFFFF", // Haas
+  TSU: "#6692FF", HAD: "#6692FF", // VCARB
+  HUL: "#00E701", BOR: "#00E701", // Kick Sauber
 };
 
-const DRIVER_TEAMS = {
-  "VER": "Red Bull Racing",
-  "LAW": "Red Bull Racing",
-  "NOR": "McLaren",
-  "PIA": "McLaren",
-  "LEC": "Ferrari",
-  "HA":  "Ferrari",
-  "RUS": "Mercedes",
-  "ANT": "Mercedes",
-  "ALO": "Aston Martin",
-  "STR": "Aston Martin",
-  "GAS": "Alpine",
-  "DOO": "Alpine",
-  "ALB": "Williams",
-  "SAI": "Williams",
-  "COL": "Williams",
-  "TSU": "RB",
-  "HAD": "RB",
-  "HUL": "Kick Sauber",
-  "BOR": "Kick Sauber",
-  "OCO": "Haas",
-  "BEA": "Haas"
-};
-
-const getDriverColor = (driverCode) => {
-  const team = DRIVER_TEAMS[driverCode] || "Default";
-  return TEAM_COLORS[team] || TEAM_COLORS["Default"];
-};
-
-const CustomTooltip = ({ active, payload, label }) => {
-  if (active && payload && payload.length) {
-    const driverCode = label;
-    const teamName = DRIVER_TEAMS[driverCode] || "Unknown Team";
-    const teamColor = getDriverColor(driverCode);
-
-    return (
-      <div style={{
-        backgroundColor: '#15151e',
-        border: `1px solid ${teamColor}`,
-        padding: '10px',
-        color: '#fff',
-        fontFamily: '"Orbitron", sans-serif',
-        boxShadow: `0 0 15px ${teamColor}40`
-      }}>
-        <p style={{ margin: 0, fontWeight: 'bold', fontSize: '14px' }}>{driverCode}</p>
-        <p style={{ margin: '4px 0 0', fontSize: '12px', color: '#bfbfbf' }}>
-          {teamName}
-        </p>
-        <p style={{ margin: '4px 0 0', color: teamColor, fontWeight: 'bold' }}>
-          Score: {typeof payload[0].value === 'number' ? payload[0].value.toFixed(3) : payload[0].value}
-        </p>
-      </div>
-    );
-  }
-  return null;
-};
-
-export default function MetricChart({ title, dataKey, data }) {
-  const axisColor = "#bfbfbf";
-  const gridColor = "#333333";
+export default function MetricChart({ title, data, dataKey }) {
+  if (!data || data.length === 0) return <p style={{ color: "#888", textAlign: "center" }}>No telemetry data available for this selection.</p>;
 
   return (
-    <div className="mb-5" style={{ 
-      background: 'rgba(255,255,255,0.02)', 
-      padding: '20px', 
-      borderRadius: '8px', 
-      border: '1px solid rgba(255,255,255,0.1)' 
-    }}>
-      <h4 className="mb-3" style={{ 
-        color: '#fff', 
-        fontFamily: '"Orbitron", sans-serif', 
-        borderLeft: '4px solid #ff1801', 
-        paddingLeft: '10px' 
-      }}>
-        {title}
-      </h4>
-
-      <ResponsiveContainer width="100%" height={400}>
-        <BarChart 
-          data={data} 
-          margin={{ top: 20, right: 30, left: 20, bottom: 5 }}
-        >
-          <CartesianGrid strokeDasharray="3 3" stroke={gridColor} vertical={false} />
-
+    <div style={{ width: "100%", height: 350 }}>
+      {title && <h3 style={{ color: "#fff", marginBottom: "20px" }}>{title}</h3>}
+      
+      <ResponsiveContainer width="100%" height="100%">
+        <BarChart data={data} margin={{ top: 20, right: 30, left: 0, bottom: 5 }}>
+          <CartesianGrid strokeDasharray="3 3" stroke="#222" vertical={false} />
+          
           <XAxis 
             dataKey="driver" 
-            stroke={axisColor} 
-            tick={{ fill: axisColor, fontSize: 12, fontFamily: 'sans-serif' }}
+            stroke="#888" 
+            tick={{ fill: "#888", fontFamily: "Orbitron", fontSize: 12 }} 
             tickLine={false}
-            axisLine={{ stroke: '#555' }}
+            axisLine={{ stroke: "#444" }}
           />
+          
           <YAxis 
-            stroke={axisColor} 
-            tick={{ fill: axisColor, fontSize: 12, fontFamily: 'sans-serif' }}
+            stroke="#888" 
+            tick={{ fill: "#888", fontFamily: "sans-serif", fontSize: 12 }} 
             tickLine={false}
-            axisLine={false} 
+            axisLine={{ stroke: "#444" }}
           />
-
-          <Tooltip 
-            content={<CustomTooltip />} 
-            cursor={{ fill: 'transparent' }}
+          
+          <Tooltip
+            cursor={{ fill: "rgba(255, 255, 255, 0.05)" }}
+            contentStyle={{ backgroundColor: "#111", border: "1px solid #444", borderRadius: "8px", color: "#fff" }}
+            itemStyle={{ color: "#fff", fontWeight: "bold" }}
           />
-
-          <Bar 
-            dataKey={dataKey} 
-            radius={[4, 4, 0, 0]}
-            background={{ fill: 'rgba(255, 255, 255, 0.05)', radius: [4, 4, 0, 0] }}
+          
+          <Bar
+            dataKey={dataKey}
+            maxBarSize={60}
+            radius={[6, 6, 0, 0]} 
+            animationDuration={1000}
           >
             {data.map((entry, index) => (
-              <Cell 
-                key={`cell-${index}`} 
-                fill={getDriverColor(entry.driver)} 
-              />
+              <Cell key={`cell-${index}`} fill={driverColors[entry.driver] || "#ff1e1e"} />
             ))}
           </Bar>
         </BarChart>

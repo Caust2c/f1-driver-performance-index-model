@@ -1,0 +1,290 @@
+.selection-minimal {
+  background-color: #030303;
+  min-height: 100vh;
+  color: #fff;
+  font-family: 'Orbitron', sans-serif;
+  display: flex;
+  flex-direction: column;
+}
+
+.minimal-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 30px 50px;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+.header-left h2 {
+  font-size: 1rem;
+  font-weight: 400;
+  letter-spacing: 4px;
+  color: #555;
+  margin: 0;
+}
+
+.header-left span {
+  font-weight: 900;
+  color: #fff;
+}
+
+.count-display {
+  font-size: 0.85rem;
+  letter-spacing: 2px;
+  color: #555;
+}
+
+.count-number {
+  color: #fff;
+  font-size: 1.1rem;
+  font-weight: bold;
+}
+
+.header-right {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+}
+
+.minimal-text-btn {
+  background: none;
+  border: none;
+  color: #555;
+  font-family: 'Orbitron', sans-serif;
+  font-size: 0.75rem;
+  letter-spacing: 2px;
+  cursor: pointer;
+  transition: color 0.3s;
+}
+
+.minimal-text-btn:hover {
+  color: #fff;
+}
+
+.divider {
+  color: #333;
+  font-size: 0.8rem;
+}
+
+.minimal-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
+  column-gap: 80px;
+  row-gap: 50px;
+  max-width: 1200px;
+  margin: 60px auto;
+  padding: 0 40px;
+  flex-grow: 1;
+}
+
+.minimal-team-group {
+  display: flex;
+  flex-direction: column;
+}
+
+.team-group-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+  padding-bottom: 15px;
+  margin-bottom: 20px;
+  transition: border-color 0.4s;
+  cursor: pointer; /* Makes the whole header act like a button */
+}
+
+.minimal-team-group:hover .team-group-header {
+  border-color: rgba(255, 255, 255, 0.3);
+}
+
+.team-title-wrap {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+}
+
+.minimal-team-logo {
+  width: 36px;
+  height: 36px;
+  object-fit: contain;
+  filter: grayscale(100%) opacity(0.4);
+  transition: all 0.4s ease;
+}
+
+.minimal-team-group:hover .minimal-team-logo {
+  filter: grayscale(0%) opacity(1);
+}
+
+.team-name {
+  font-size: 0.9rem;
+  letter-spacing: 3px;
+  color: #666;
+  margin: 0;
+  font-weight: 400;
+  transition: color 0.3s;
+}
+
+.team-group-header:hover .team-name {
+  color: #fff;
+}
+
+.team-quick-toggle {
+  background: none;
+  border: none;
+  color: #444;
+  font-size: 1.4rem;
+  cursor: pointer;
+  transition: color 0.3s;
+  padding: 0;
+  pointer-events: none; /* Lets the click pass through to the header wrap */
+}
+
+.team-group-header:hover .team-quick-toggle {
+  color: #fff;
+}
+
+.team-quick-toggle.active {
+  color: var(--team-color);
+}
+
+.driver-cards-container {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.driver-card {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 12px 20px 12px 12px;
+  background-color: #0c0c0c;
+  border: 1px solid #1a1a1a;
+  border-radius: 8px;
+  cursor: pointer;
+  position: relative;
+  overflow: hidden;
+  transition: transform 0.4s cubic-bezier(0.19, 1, 0.22, 1), border-color 0.4s, background-color 0.4s, box-shadow 0.4s;
+}
+
+.driver-card-left {
+  display: flex;
+  align-items: center;
+  gap: 18px;
+  z-index: 2;
+}
+
+.driver-card-pic {
+  width: 55px;
+  height: 55px;
+  border-radius: 50%;
+  object-fit: cover;
+  filter: grayscale(100%) opacity(0.3);
+  transition: all 0.4s cubic-bezier(0.19, 1, 0.22, 1);
+}
+
+.driver-card-name {
+  font-size: 1.1rem;
+  letter-spacing: 2px;
+  color: #555;
+  transition: color 0.4s ease;
+}
+
+.driver-card-number {
+  font-size: 1.8rem;
+  font-weight: 900;
+  font-style: italic;
+  color: #1a1a1a;
+  transition: all 0.4s ease;
+  z-index: 1;
+}
+
+.card-accent-line {
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 3px;
+  height: 100%;
+  background-color: var(--team-color);
+  opacity: 0;
+  transition: opacity 0.4s ease, box-shadow 0.4s ease;
+}
+
+.driver-card:hover {
+  transform: translateY(-4px);
+  border-color: #333;
+  background-color: #111;
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.4);
+}
+
+.driver-card:hover .driver-card-name {
+  color: #aaa;
+}
+
+.driver-card:hover .driver-card-number {
+  color: #333;
+}
+
+.driver-card:hover .driver-card-pic {
+  opacity: 0.7;
+}
+
+.driver-card.selected {
+  transform: translateY(-4px);
+  border-color: var(--team-color);
+  background-color: #141414;
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.6);
+}
+
+.driver-card.selected .driver-card-name {
+  color: #fff;
+  font-weight: bold;
+}
+
+.driver-card.selected .driver-card-number {
+  color: var(--team-color);
+  text-shadow: 0 0 15px var(--team-color);
+  opacity: 0.9;
+}
+
+.driver-card.selected .driver-card-pic {
+  filter: grayscale(0%) opacity(1);
+}
+
+.driver-card.selected .card-accent-line {
+  opacity: 1;
+  box-shadow: 2px 0 12px var(--team-color);
+}
+
+.minimal-footer {
+  padding: 40px;
+  display: flex;
+  justify-content: center;
+}
+
+.minimal-launch-btn {
+  background: transparent;
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  color: #fff;
+  padding: 15px 50px;
+  font-family: 'Orbitron', sans-serif;
+  font-size: 0.9rem;
+  letter-spacing: 4px;
+  cursor: pointer;
+  border-radius: 40px;
+  transition: all 0.4s cubic-bezier(0.19, 1, 0.22, 1);
+}
+
+.minimal-launch-btn:hover:not(:disabled) {
+  border-color: #fff;
+  background: #fff;
+  color: #000;
+  transform: translateY(-3px);
+  box-shadow: 0 10px 20px rgba(255, 255, 255, 0.1);
+}
+
+.minimal-launch-btn:disabled {
+  border-color: #222;
+  color: #333;
+  cursor: not-allowed;
+}

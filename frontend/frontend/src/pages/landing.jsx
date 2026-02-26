@@ -1,11 +1,14 @@
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import "./landing.css";
 import logoImg from "../assets/img2.png";
 import rb9Model from "../assets/red_bull_rb9_f1__www.vecarz.com.glb";
+import F1Loader from "../components/F1Loader"; 
+import F1StartLoader from "../components/F1StartLoader";
 
 export default function Landing() {
   const navigate = useNavigate();
+  const [isLaunching, setIsLaunching] = useState(false); 
 
   useEffect(() => {
     const scriptId = "model-viewer-script";
@@ -21,17 +24,13 @@ export default function Landing() {
 
   return (
     <div className="landing-page">
+      {isLaunching && <F1StartLoader />}
+
       <header className="landing-header">
         <div className="landing-logo">
           <img src={logoImg} alt="VelocityStats Logo" />
           <span>VelocityStats</span>
         </div>
-
-        <nav className="landing-nav">
-          <button type="button" onClick={() => navigate("/Home")}>
-            Show Analytics / Graphs
-          </button>
-        </nav>
       </header>
 
       <main className="landing-main">
@@ -50,9 +49,12 @@ export default function Landing() {
             <button
               className="landing-primary"
               type="button"
-              onClick={() => navigate("/Home")}
+              onClick={() => {
+                setIsLaunching(true);
+                setTimeout(() => navigate("/selection"), 3200);
+              }}
             >
-              Show Analytics / Graphs
+              Proceed to Selection
             </button>
           </div>
 

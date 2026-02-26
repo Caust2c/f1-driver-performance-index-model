@@ -1,16 +1,31 @@
-import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
-import Home from "./pages/Home";
+import { BrowserRouter, Routes, Route } from "react-router-dom";
+import { useState } from "react";
+
 import Landing from "./pages/landing";
+import Selection from "./pages/Selection";
+import Home from "./pages/Home";
 
 export default function App() {
+  const [selectedDrivers, setSelectedDrivers] = useState([]);
+
   return (
-    <Router>
-      <div> 
-        <Routes>
-          <Route path="/Home" element={<Home />} />
-          <Route path="/" element={<Landing />} />
-        </Routes>
-      </div>
-    </Router>
+    <BrowserRouter>
+      <Routes>
+        <Route path="/" element={<Landing />} />
+        <Route 
+          path="/selection" 
+          element={
+            <Selection 
+              selectedDrivers={selectedDrivers} 
+              setSelectedDrivers={setSelectedDrivers} 
+            />
+          } 
+        />
+        <Route 
+          path="/home" 
+          element={<Home selectedDrivers={selectedDrivers} />} 
+        />
+      </Routes>
+    </BrowserRouter>
   );
 }
