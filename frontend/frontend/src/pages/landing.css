@@ -204,11 +204,12 @@
 
 .landing-model-container {
   position: absolute;
-  right: -6%;
-  bottom: 8%;
-  width: 70vw;
-  max-width: 900px;
-  height: 520px;
+  right: -2%;
+  bottom: 2%;
+  width: 78vw;
+  max-width: 1200px;
+  height: 72vh;
+  min-height: 600px;
   z-index: 1;
   pointer-events: none;
   filter: drop-shadow(0 0 40px rgba(255, 30, 30, 0.35));
@@ -251,8 +252,10 @@
     position: relative;
     right: 0;
     bottom: 0;
-    width: 95vw;
-    height: 360px;
+    width: 100%;
+    max-width: 720px;
+    height: 460px;
+    min-height: 0;
     margin-top: 30px;
   }
 
