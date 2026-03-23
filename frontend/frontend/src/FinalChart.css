@@ -107,6 +107,28 @@
   font-style: italic;
 }
 
+.weight-auth-prompt {
+  margin: 16px 0 26px;
+  padding: 16px;
+  border-radius: 8px;
+  border: 1px solid rgba(255, 30, 30, 0.45);
+  background: linear-gradient(135deg, rgba(255, 30, 30, 0.1), rgba(0, 0, 0, 0.5));
+}
+
+.weight-auth-prompt p {
+  margin: 0;
+  color: #ffd6d6;
+  text-align: center;
+  font-size: 0.9rem;
+}
+
+.weight-auth-actions {
+  margin-top: 12px;
+  display: flex;
+  justify-content: center;
+  gap: 10px;
+}
+
 .f1-separator {
   height: 120px;
   margin: 40px 0;

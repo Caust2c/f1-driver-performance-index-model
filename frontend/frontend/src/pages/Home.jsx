@@ -1,4 +1,5 @@
 import { useEffect, useState } from "react";
+import { useAuth } from "@clerk/clerk-react";
 import MetricChart from "../components/MetricChart"; 
 import FinalChart from "../components/FinalChart";
 import TiltCard from "../components/TiltCard"; 
@@ -6,6 +7,7 @@ import TrackTracker from "../components/TrackTracker";
 import "./Home.css";
 
 export default function Home({ selectedDrivers }) {
+  const { isSignedIn } = useAuth();
   const [quali, setQuali] = useState([]);
   const [clean, setClean] = useState([]);
   const [consistency, setConsistency] = useState([]);
@@ -125,7 +127,7 @@ export default function Home({ selectedDrivers }) {
           <div className="final-chart-wrapper">
              <FinalChart metricDataByKey={{
                qualifying: quali, cleanAirPenalty: clean, consistency, firstLap, racePositionGain, tyreWhisperer
-             }} season={2025} />
+             }} season={2025} canEditWeights={Boolean(isSignedIn)} />
           </div>
         </section>
       </div>

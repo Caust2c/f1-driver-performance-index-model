@@ -99,11 +99,7 @@ export function computeWeightedFinalScores(metricDataByKey = {}, rawWeights = {}
 }
 
 export function buildFinalJsonPayload(finalData, season = 2025) {
-	return {
-		metric: "Final Driver Ranking",
-		season,
-		unit: "points",
-		data: finalData,
+	return {q
 	};
 }
 

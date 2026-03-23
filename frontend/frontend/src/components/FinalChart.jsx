@@ -1,4 +1,5 @@
 import { useMemo, useState } from "react";
+import { useNavigate } from "react-router-dom";
 import MetricChart from "./MetricChart";
 import {
     METRIC_CONFIG,
@@ -9,14 +10,29 @@ import {
 } from "../utils/scoreMath";
 import "../FinalChart.css";
 
-export default function FinalChart({ metricDataByKey, season = 2025 }) {
+export default function FinalChart({ metricDataByKey, season = 2025, canEditWeights = false }) {
+    const navigate = useNavigate();
     const [weights, setWeights] = useState(getDefaultWeights);
+    const [showAuthPrompt, setShowAuthPrompt] = useState(false);
+
+    function requireAuthForWeights() {
+        if (canEditWeights) {
+            return false;
+        }
+
+        setShowAuthPrompt(true);
+        return true;
+    }
 
     const finalData = useMemo(() => {
         return computeWeightedFinalScores(metricDataByKey, weights);
     }, [metricDataByKey, weights]);
 
     function updateWeight(metricKey, nextValue) {
+        if (requireAuthForWeights()) {
+            return;
+        }
+
         const safeValue = Number(nextValue);
         setWeights((prev) => ({
             ...prev,
@@ -55,6 +71,8 @@ export default function FinalChart({ metricDataByKey, season = 2025 }) {
                             max="10"
                             step="0.5"
                             value={weights[key]}
+                            onPointerDown={requireAuthForWeights}
+                            onFocus={requireAuthForWeights}
                             onChange={(event) => updateWeight(key, event.target.value)}
                         />
                         <input
@@ -64,11 +82,26 @@ export default function FinalChart({ metricDataByKey, season = 2025 }) {
                             max="10"
                             step="0.5"
                             value={weights[key]}
+                            onFocus={requireAuthForWeights}
                             onChange={(event) => updateWeight(key, event.target.value)}
                         />
                     </label>
                 ))}
             </div>
+
+            {showAuthPrompt && !canEditWeights ? (
+                <div className="weight-auth-prompt" role="alert">
+                    <p>Log in or sign up to adjust telemetry weights.</p>
+                    <div className="weight-auth-actions">
+                        <button type="button" className="f1-button secondary" onClick={() => navigate("/sign-in")}>
+                            Log In
+                        </button>
+                        <button type="button" className="f1-button primary" onClick={() => navigate("/sign-up")}>
+                            Sign Up
+                        </button>
+                    </div>
+                </div>
+            ) : null}
 
             <p className="instruction-text">
                 Tweak the telemetry weights above to generate a custom Final Driver Ranking.

@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
+import { SignedIn, SignedOut, UserButton } from "@clerk/clerk-react";
 import "./landing.css";
 import logoImg from "../assets/img2.png";
 import rb9Model from "../assets/red_bull_rb9_f1__www.vecarz.com.glb";
@@ -30,6 +31,26 @@ export default function Landing() {
         <div className="landing-logo">
           <img src={logoImg} alt="VelocityStats Logo" />
           <span>VelocityStats</span>
+        </div>
+
+        <div className="landing-auth-nav">
+          <SignedOut>
+            <button type="button" className="landing-secondary" onClick={() => navigate("/sign-in")}>
+              Log In
+            </button>
+            <button type="button" className="landing-primary" onClick={() => navigate("/sign-up")}>
+              Sign Up
+            </button>
+          </SignedOut>
+
+          <SignedIn>
+            <button type="button" className="landing-secondary" onClick={() => navigate("/selection")}>
+              Open Dashboard
+            </button>
+            <div className="landing-user-button-wrap">
+              <UserButton />
+            </div>
+          </SignedIn>
         </div>
       </header>
 
